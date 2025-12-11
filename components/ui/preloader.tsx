@@ -3,16 +3,18 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLoading } from "@/components/providers/loading-provider";
-import { useWhooshSound } from "@/hooks/use-whoosh-sound";
+import { useOrchestralSound } from "@/hooks/use-orchestral-sound";
 
 export function Preloader() {
     const { isLoading, setIsLoading } = useLoading();
     const [count, setCount] = useState(0);
-    const playRevealSound = useWhooshSound();
+    const [isReady, setIsReady] = useState(false);
+    const playOrchestra = useOrchestralSound();
 
     useEffect(() => {
         if (isLoading) {
             document.body.style.overflow = "hidden";
+            window.scrollTo(0, 0); // Reset scroll
         } else {
             document.body.style.overflow = "unset";
         }
@@ -21,6 +23,7 @@ export function Preloader() {
             setCount((prev) => {
                 if (prev >= 100) {
                     clearInterval(interval);
+                    setIsReady(true);
                     return 100;
                 }
                 const increment = Math.floor(Math.random() * 10) + 1;
@@ -28,16 +31,13 @@ export function Preloader() {
             });
         }, 60);
 
-        if (count === 100) {
-            const timeout = setTimeout(() => {
-                playRevealSound();
-                setIsLoading(false);
-            }, 800);
-            return () => clearTimeout(timeout);
-        }
-
         return () => clearInterval(interval);
-    }, [count, isLoading, setIsLoading, playRevealSound]);
+    }, [isLoading]);
+
+    const handleEnter = () => {
+        playOrchestra();
+        setIsLoading(false);
+    };
 
     const ease = [0.76, 0, 0.24, 1] as const;
 
@@ -46,7 +46,7 @@ export function Preloader() {
             {isLoading && (
                 <motion.div
                     key="preloader"
-                    className="fixed inset-0 z-[9999] flex items-center justify-center cursor-none pointer-events-none"
+                    className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto"
                     exit={{ transition: { duration: 2 } }}
                 >
                     {/* Left Curtain Panel */}
@@ -82,22 +82,43 @@ export function Preloader() {
                         className="relative z-20 flex flex-col items-center justify-center p-12"
                         exit={{ filter: "blur(10px)", opacity: 0, scale: 0.9, transition: { duration: 0.4 } }}
                     >
-                        <div className="relative overflow-hidden">
-                            <motion.h1
-                                className="text-9xl md:text-[12rem] font-bold font-display text-white tabular-nums tracking-tighter mix-blend-difference"
-                                initial={{ opacity: 0, y: 50 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5 }}
-                            >
-                                {count}
-                            </motion.h1>
-                            {/* Ultra-thin Loading Bar */}
-                            <motion.div
-                                className="h-[1px] bg-white/50 absolute bottom-6 left-0 w-full"
-                                initial={{ scaleX: 0, originX: 0 }}
-                                animate={{ scaleX: count / 100 }}
-                                transition={{ ease: "linear" }}
-                            />
+                        <div className="relative overflow-hidden flex flex-col items-center gap-6">
+                            {/* Counter / Enter Button Transition */}
+                            <AnimatePresence mode="wait">
+                                {!isReady ? (
+                                    <motion.h1
+                                        key="count"
+                                        className="text-9xl md:text-[12rem] font-bold font-display text-white tabular-nums tracking-tighter mix-blend-difference"
+                                        initial={{ opacity: 0, y: 50 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: -50 }}
+                                    >
+                                        {count}
+                                    </motion.h1>
+                                ) : (
+                                    <motion.button
+                                        key="enter"
+                                        onClick={handleEnter}
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        animate={{ scale: 1, opacity: 1 }}
+                                        whileHover={{ scale: 1.05, letterSpacing: "0.2em" }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className="text-white text-3xl font-light uppercase tracking-[0.15em] border border-white/20 px-12 py-6 rounded-full glass hover:bg-white/10 transition-all cursor-pointer z-50 pointer-events-auto"
+                                    >
+                                        Enter
+                                    </motion.button>
+                                )}
+                            </AnimatePresence>
+
+                            {/* Loading Bar */}
+                            {!isReady && (
+                                <motion.div
+                                    className="h-[1px] bg-white/50 absolute bottom-6 left-0 w-full"
+                                    initial={{ scaleX: 0, originX: 0 }}
+                                    animate={{ scaleX: count / 100 }}
+                                    transition={{ ease: "linear" }}
+                                />
+                            )}
                         </div>
                     </motion.div>
 
@@ -107,10 +128,10 @@ export function Preloader() {
                         exit={{ opacity: 0, transition: { duration: 0.2 } }}
                     >
                         <p className="text-sm font-mono text-white/70 uppercase tracking-widest mb-1">
-                            System Check
+                            {isReady ? "Awaiting Input" : "System Check"}
                         </p>
-                        <p className="text-xs text-white/40">
-                            Ready_
+                        <p className="text-xs text-white/40 animate-pulse">
+                            {isReady ? "Click to Initialize" : "Processing..."}
                         </p>
                     </motion.div>
                 </motion.div>
