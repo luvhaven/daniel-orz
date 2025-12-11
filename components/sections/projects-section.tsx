@@ -16,6 +16,14 @@ interface Project {
 
 const projects: Project[] = [
     {
+        title: "Lumina",
+        category: "E-Commerce Architecture",
+        description: "A headless luxury commerce solution serving 50k+ daily active users with sub-second load times.",
+        tags: ["Next.js", "GraphQL", "AWS"],
+        color: "from-blue-500/20 to-cyan-500/20",
+        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
         title: "FinTech Dashboard",
         category: "Data Visualization",
         description: "Real-time financial analytics platform processing millions of data points via WebSockets.",
@@ -24,20 +32,12 @@ const projects: Project[] = [
         image: "/project-fintech.png"
     },
     {
-        title: "Enterprise E-Commerce",
-        category: "Architecture",
-        description: "A headless commerce solution serving 50k+ daily active users with sub-second load times.",
-        tags: ["Next.js", "GraphQL", "AWS"],
-        color: "from-blue-500/20 to-cyan-500/20",
-        image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2070&auto=format&fit=crop"
-    },
-    {
-        title: "AI Content Studio",
+        title: "Aether",
         category: "Generative AI",
-        description: "Production-grade AI application integrating LLMs for real-time content generation.",
+        description: "Production-grade AI content studio integrating LLMs for real-time creativity.",
         tags: ["OpenAI", "Edge Runtime", "PostgreSQL"],
         color: "from-orange-500/20 to-red-500/20",
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2000&auto=format&fit=crop"
+        image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop"
     },
     {
         title: "Design System Core",

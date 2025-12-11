@@ -5,6 +5,7 @@ import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { useLoading } from "@/components/providers/loading-provider";
+import { CountUp } from "@/components/ui/count-up";
 
 export function HeroSection() {
     const { isLoading } = useLoading();
@@ -127,7 +128,10 @@ export function HeroSection() {
                         transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                         className="absolute top-10 right-10 z-20 glass p-4 rounded-2xl hidden md:block backdrop-blur-md bg-black/40 border border-white/20"
                     >
-                        <span className="text-4xl font-bold font-display text-white drop-shadow-lg">15+</span>
+                        <div className="flex items-baseline gap-1">
+                            <CountUp end={15} duration={2.5} className="text-4xl font-bold font-display text-white drop-shadow-lg" />
+                            <span className="text-2xl font-bold text-white">+</span>
+                        </div>
                         <span className="block text-xs uppercase tracking-wider text-white font-bold mt-1 drop-shadow-md">Years Exp.</span>
                     </motion.div>
                 </motion.div>

@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Copy, Check, Github, Linkedin, Mail, Phone, Download, Send } from "lucide-react";
+import { Copy, Check, Github, Linkedin, Mail, Phone, Download, Send, Power } from "lucide-react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { GlassCard } from "@/components/ui/glass-card";
+import { useLoading } from "@/components/providers/loading-provider";
 
 export function ContactSection() {
     const [copied, setCopied] = useState(false);
+    const { setGoodbye } = useLoading();
     const email = "doriazowan@gmail.com";
 
     const handleCopy = () => {
@@ -48,104 +50,107 @@ export function ContactSection() {
                 <motion.div
                     animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
                     transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-3xl"
-                />
-                <motion.div
-                    animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                    className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary/20 rounded-full blur-3xl"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 blur-[100px] rounded-full"
                 />
             </div>
 
             <div className="container-custom relative z-10">
-                {/* Section header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center max-w-3xl mx-auto mb-16"
-                >
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold font-display mb-6">
-                        Let's Build Something <span className="gradient-text">Amazing</span>{" "}
-                        Together
-                    </h2>
-                    <p className="text-lg md:text-xl text-muted-foreground">
-                        Available for senior frontend engineering roles and technical leadership positions.
-                    </p>
-                </motion.div>
-
-                {/* Contact methods grid */}
-                <div className="grid md:grid-cols-2 gap-6 mb-16">
-                    {/* Email Card (Interactive) */}
-                    <motion.button
-                        onClick={handleCopy}
+                <div className="mb-20">
+                    <motion.span
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="group relative flex items-center gap-6 p-6 md:p-8 rounded-3xl glass w-full hover:bg-white/5 transition-colors text-left"
+                        className="text-sm font-mono uppercase tracking-widest text-muted-foreground mb-4 block"
                     >
-                        <div className="p-4 rounded-full bg-primary/10 text-primary group-hover:scale-110 transition-transform">
-                            <Mail className="w-8 h-8" />
-                        </div>
-                        <div className="flex-1">
-                            <p className="text-sm text-muted-foreground uppercase tracking-widest mb-1">Email</p>
-                            <h3 className="text-xl md:text-2xl font-bold font-display text-white group-hover:text-primary transition-colors break-all">
-                                {email}
-                            </h3>
-                        </div>
-                        <div className="absolute top-6 right-6">
-                            <AnimatePresence mode="wait">
-                                {copied ? (
-                                    <motion.div
-                                        key="check"
-                                        initial={{ scale: 0, opacity: 0 }}
-                                        animate={{ scale: 1, opacity: 1 }}
-                                        exit={{ scale: 0, opacity: 0 }}
-                                    >
-                                        <Check className="w-5 h-5 text-green-500" />
-                                    </motion.div>
-                                ) : (
-                                    <motion.div
-                                        key="copy"
-                                        initial={{ scale: 0, opacity: 0 }}
-                                        animate={{ scale: 1, opacity: 1 }}
-                                        exit={{ scale: 0, opacity: 0 }}
-                                    >
-                                        <Copy className="w-5 h-5 text-muted-foreground group-hover:text-white" />
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-                    </motion.button>
-
-                    {/* Other Methods */}
-                    {contactMethods.map((method, index) => (
-                        <motion.a
-                            key={method.label}
-                            href={method.href}
-                            target={method.href.startsWith("http") ? "_blank" : undefined}
-                            rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            whileHover={{ scale: 1.02 }}
-                            className="group flex items-center gap-6 p-6 md:p-8 rounded-3xl glass w-full hover:bg-white/5 transition-colors"
-                        >
-                            <div className={`p-4 rounded-full bg-gradient-to-br ${method.color} text-primary group-hover:scale-110 transition-transform`}>
-                                <method.icon className="w-6 h-6 text-white" />
-                            </div>
-                            <div>
-                                <p className="text-sm text-muted-foreground uppercase tracking-widest mb-1">{method.label}</p>
-                                <h3 className="text-lg font-bold text-white group-hover:text-secondary transition-colors">{method.value}</h3>
-                            </div>
-                        </motion.a>
-                    ))}
+                        Get In Touch
+                    </motion.span>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="text-5xl md:text-7xl font-bold font-display"
+                    >
+                        Let's build <br />
+                        <span className="gradient-text">the future</span> together.
+                    </motion.h2>
                 </div>
 
-                {/* CTA Section */}
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 mb-24">
+                    {/* Contact Info */}
+                    <div className="space-y-8">
+                        <GlassCard className="p-8 space-y-6">
+                            <div className="flex items-center justify-between">
+                                <h3 className="text-xl font-semibold">Email</h3>
+                                <div className="p-2 bg-white/5 rounded-full">
+                                    <Mail className="w-5 h-5 text-primary" />
+                                </div>
+                            </div>
+                            <div className="space-y-4">
+                                <a
+                                    href={`mailto:${email}`}
+                                    className="text-2xl md:text-3xl font-display font-bold hover:text-primary transition-colors block break-all"
+                                >
+                                    {email}
+                                </a>
+                                <button
+                                    onClick={handleCopy}
+                                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-white transition-colors group"
+                                >
+                                    {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4 group-hover:scale-110 transition-transform" />}
+                                    {copied ? "Copied!" : "Copy Email"}
+                                </button>
+                            </div>
+                        </GlassCard>
+
+                        <div className="grid gap-6">
+                            {contactMethods.map((method, index) => (
+                                <GlassCard
+                                    key={method.label}
+                                    className="p-6 flex items-center gap-6 group hover:border-primary/50 transition-colors cursor-pointer"
+                                    onClick={() => window.open(method.href, "_blank")}
+                                >
+                                    <div className={`p-4 rounded-xl bg-gradient-to-br ${method.color} group-hover:scale-110 transition-transform duration-300`}>
+                                        <method.icon className="w-6 h-6 text-white" />
+                                    </div>
+                                    <div>
+                                        <span className="text-sm text-muted-foreground block mb-1">{method.label}</span>
+                                        <span className="text-lg font-semibold group-hover:text-primary transition-colors">{method.value}</span>
+                                    </div>
+                                </GlassCard>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* CTA Box */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        className="relative"
+                    >
+                        <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-3xl blur opacity-30" />
+                        <div className="relative h-full bg-black/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 md:p-12 flex flex-col justify-between overflow-hidden">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/20 blur-[80px] rounded-full pointer-events-none" />
+
+                            <div className="space-y-6 relative z-10">
+                                <h3 className="text-3xl font-bold font-display">Availability</h3>
+                                <p className="text-lg text-muted-foreground leading-relaxed">
+                                    I am currently open to discussing new opportunities, whether it's a senior engineering role, architectural consultation, or leading a high-impact project.
+                                </p>
+                                <div className="flex items-center gap-3 text-green-400 bg-green-400/10 px-4 py-2 rounded-full w-fit">
+                                    <span className="relative flex h-3 w-3">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                                    </span>
+                                    <span className="text-sm font-medium">Available for work</span>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+
+                {/* Final CTA */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -159,7 +164,7 @@ export function ContactSection() {
                                     Ready to <span className="gradient-text">Level Up</span> Your Team?
                                 </h3>
                                 <p className="text-lg text-muted-foreground">
-                                    I am currently available for new opportunities.
+                                    Let's discuss how I can contribute to your success.
                                 </p>
                             </div>
 
@@ -191,11 +196,19 @@ export function ContactSection() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className="mt-20 text-center text-muted-foreground"
+                    className="mt-20 text-center text-muted-foreground flex flex-col items-center gap-6"
                 >
                     <p className="text-sm">
                         © {new Date().getFullYear()} Daniel Oriazowan. All rights reserved.
                     </p>
+
+                    <button
+                        onClick={() => setGoodbye(true)}
+                        className="flex items-center gap-2 text-[10px] text-white/20 hover:text-red-500 transition-colors uppercase tracking-[0.2em] group border border-transparent hover:border-red-500/20 px-4 py-2 rounded-full"
+                    >
+                        <Power className="w-3 h-3 group-hover:animate-pulse" />
+                        Terminate Session
+                    </button>
                 </motion.footer>
             </div>
         </section>
