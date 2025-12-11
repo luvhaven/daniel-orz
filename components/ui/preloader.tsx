@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLoading } from "@/components/providers/loading-provider";
-import { useAudio } from "@/hooks/use-audio";
+import { useWhooshSound } from "@/hooks/use-whoosh-sound";
 
 export function Preloader() {
     const { isLoading, setIsLoading } = useLoading();
     const [count, setCount] = useState(0);
-    const playRevealSound = useAudio("/sounds/whoosh.mp3"); // You'll need to add this file
+    const playRevealSound = useWhooshSound();
 
     useEffect(() => {
         if (isLoading) {
@@ -30,7 +30,6 @@ export function Preloader() {
 
         if (count === 100) {
             const timeout = setTimeout(() => {
-                // Trigger transition
                 playRevealSound();
                 setIsLoading(false);
             }, 800);
@@ -40,7 +39,6 @@ export function Preloader() {
         return () => clearInterval(interval);
     }, [count, isLoading, setIsLoading, playRevealSound]);
 
-    // "Curtain" ease - heavy start, smooth finish
     const ease = [0.76, 0, 0.24, 1] as const;
 
     return (
@@ -55,30 +53,28 @@ export function Preloader() {
                     <motion.div
                         className="absolute top-0 left-0 w-1/2 h-full bg-black z-10"
                         style={{
-                            // Velvet Fold Effect
-                            background: "linear-gradient(90deg, #050505 0%, #1a1a1a 20%, #000000 40%, #1a1a1a 60%, #050505 80%, #000000 100%)"
+                            background: "repeating-linear-gradient(90deg, #050505, #050505 2vw, #111 3vw, #111 5vw, #050505 6vw)"
                         }}
                         initial={{ x: 0 }}
                         exit={{ x: "-100%" }}
-                        transition={{ duration: 1.4, ease }}
+                        transition={{ duration: 1.6, ease }}
                     >
-                        {/* Deep Shadow for the edge */}
-                        <div className="absolute right-0 top-0 w-[150px] h-full bg-gradient-to-l from-black via-black/50 to-transparent pointer-events-none opacity-80" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
+                        <div className="absolute right-0 top-0 w-[200px] h-full bg-gradient-to-l from-black via-black/60 to-transparent opacity-90" />
                     </motion.div>
 
                     {/* Right Curtain Panel */}
                     <motion.div
                         className="absolute top-0 right-0 w-1/2 h-full bg-black z-10"
                         style={{
-                            // Velvet Fold Effect (Mirrored logic)
-                            background: "linear-gradient(90deg, #000000 0%, #050505 20%, #1a1a1a 40%, #000000 60%, #1a1a1a 80%, #050505 100%)"
+                            background: "repeating-linear-gradient(90deg, #050505, #050505 2vw, #111 3vw, #111 5vw, #050505 6vw)"
                         }}
                         initial={{ x: 0 }}
                         exit={{ x: "100%" }}
-                        transition={{ duration: 1.4, ease }}
+                        transition={{ duration: 1.6, ease }}
                     >
-                        {/* Deep Shadow for the edge */}
-                        <div className="absolute left-0 top-0 w-[150px] h-full bg-gradient-to-r from-black via-black/50 to-transparent pointer-events-none opacity-80" />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
+                        <div className="absolute left-0 top-0 w-[200px] h-full bg-gradient-to-r from-black via-black/60 to-transparent opacity-90" />
                     </motion.div>
 
                     {/* Center Content */}

@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowUpRight, Github } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 interface Project {
     title: string;
@@ -10,36 +11,41 @@ interface Project {
     description: string;
     tags: string[];
     color: string;
+    image: string;
 }
 
 const projects: Project[] = [
-    {
-        title: "Enterprise E-Commerce",
-        category: "Architecture",
-        description: "A headless commerce solution serving 50k+ daily active users with sub-second load times.",
-        tags: ["Next.js", "GraphQL", "AWS"],
-        color: "from-blue-500/20 to-cyan-500/20"
-    },
     {
         title: "FinTech Dashboard",
         category: "Data Visualization",
         description: "Real-time financial analytics platform processing millions of data points via WebSockets.",
         tags: ["React", "D3.js", "Socket.io"],
-        color: "from-purple-500/20 to-pink-500/20"
+        color: "from-purple-500/20 to-pink-500/20",
+        image: "/project-fintech.png"
+    },
+    {
+        title: "Enterprise E-Commerce",
+        category: "Architecture",
+        description: "A headless commerce solution serving 50k+ daily active users with sub-second load times.",
+        tags: ["Next.js", "GraphQL", "AWS"],
+        color: "from-blue-500/20 to-cyan-500/20",
+        image: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2070&auto=format&fit=crop"
     },
     {
         title: "AI Content Studio",
         category: "Generative AI",
         description: "Production-grade AI application integrating LLMs for real-time content generation.",
         tags: ["OpenAI", "Edge Runtime", "PostgreSQL"],
-        color: "from-orange-500/20 to-red-500/20"
+        color: "from-orange-500/20 to-red-500/20",
+        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2000&auto=format&fit=crop"
     },
     {
         title: "Design System Core",
         category: "Infrastructure",
         description: "Internal component library standardized across 8 product lines improving velocity by 30%.",
         tags: ["Storybook", "Turborepo", "CI/CD"],
-        color: "from-green-500/20 to-emerald-500/20"
+        color: "from-green-500/20 to-emerald-500/20",
+        image: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=2070&auto=format&fit=crop"
     }
 ];
 
@@ -61,7 +67,15 @@ function ProjectItem({ project, index, targetScale }: { project: Project; index:
             >
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
 
-                <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-between z-10">
+                {/* Background Image */}
+                <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 transition-all duration-700"
+                />
+
+                <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-between z-10 bg-gradient-to-t from-black via-transparent to-black/20">
                     <div className="flex justify-between items-start">
                         <div>
                             <span className="text-sm font-mono uppercase tracking-widest text-muted-foreground mb-2 block">{project.category}</span>
@@ -73,12 +87,12 @@ function ProjectItem({ project, index, targetScale }: { project: Project; index:
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8 items-end">
-                        <p className="text-xl text-muted-foreground leading-relaxed">
+                        <p className="text-xl text-white/80 leading-relaxed max-w-lg">
                             {project.description}
                         </p>
                         <div className="flex flex-wrap gap-2 md:justify-end">
                             {project.tags.map(tag => (
-                                <span key={tag} className="px-4 py-2 rounded-full border border-white/10 bg-black/20 text-sm font-medium">
+                                <span key={tag} className="px-4 py-2 rounded-full border border-white/10 bg-black/40 text-sm font-medium backdrop-blur-sm">
                                     {tag}
                                 </span>
                             ))}

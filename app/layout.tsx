@@ -34,54 +34,37 @@ export const metadata: Metadata = {
     template: "%s | Daniel Oriazowan",
   },
   description:
-    "Award-winning Senior Frontend Engineer with 15+ years of experience architecting high-performance React, Next.js, and TypeScript applications. Specializing in scalable frontend architecture, performance optimization, and modern UI/UX development. Available for senior engineering roles at top-tier companies.",
+    "Award-winning Senior Frontend Engineer with 15+ years of experience architecting high-performance React, Next.js, and TypeScript applications. Specializing in scalable frontend architecture, performance optimization, and modern UI/UX development.",
   keywords: [
     "Senior Frontend Engineer",
     "React Developer",
     "Next.js Expert",
     "TypeScript",
-    "JavaScript",
     "Frontend Architecture",
     "UI/UX Development",
     "Performance Optimization",
-    "Web Development",
-    "Software Engineer",
-    "Tech Lead",
-    "Full Stack Developer",
-    "Nigeria",
-    "Lagos",
-    "Remote Work",
   ],
   authors: [{ name: "Daniel Oriazowan", url: "https://danieloriazowan.com" }],
   creator: "Daniel Oriazowan",
   publisher: "Daniel Oriazowan",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
+  icons: {
+    icon: '/favicon-logo.png',
+    shortcut: '/favicon-logo.png',
+    apple: '/favicon-logo.png',
   },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://danieloriazowan.com",
-    title: "Daniel Oriazowan | Senior Frontend Engineer & Solutions Architect",
-    description:
-      "Award-winning Senior Frontend Engineer with 15+ years building high-performance web applications. Expert in React, Next.js, TypeScript, and modern frontend architecture.",
+    title: "Daniel Oriazowan | Senior Frontend Engineer",
+    description: "Building decade-defining digital experiences.",
     siteName: "Daniel Oriazowan Portfolio",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Daniel Oriazowan - Senior Frontend Engineer",
-      },
-    ],
+    images: ["/og-image.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Daniel Oriazowan | Senior Frontend Engineer",
-    description:
-      "15+ years architecting high-performance frontend applications. React, Next.js & TypeScript expert.",
+    description: "15+ years architecting high-performance frontend applications.",
     images: ["/og-image.jpg"],
     creator: "@danieloriazowan",
   },
@@ -96,14 +79,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: "https://danieloriazowan.com",
-  },
-  category: "technology",
-  classification: "Portfolio",
-  verification: {
-    google: "google-site-verification-code",
-  },
 };
 
 export default function RootLayout({
@@ -116,38 +91,10 @@ export default function RootLayout({
     "@type": "Person",
     name: "Daniel Oriazowan",
     jobTitle: "Senior Frontend Engineer",
-    description:
-      "Senior Frontend Engineer with 15+ years of experience in building high-performance web applications",
-    image: "/daniel-oriazowan.jpg",
-    email: "doriazowan@gmail.com",
-    telephone: "+234-802-638-1777",
     url: "https://danieloriazowan.com",
     sameAs: [
       "https://linkedin.com/in/daniel-oriazowan",
       "https://github.com/danieloriazowan",
-    ],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Lagos",
-      addressCountry: "Nigeria",
-    },
-    alumniOf: {
-      "@type": "Organization",
-      name: "Computer Science Graduate",
-    },
-    worksFor: {
-      "@type": "Organization",
-      name: "Big Web Digital",
-    },
-    knowsAbout: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "JavaScript",
-      "Frontend Architecture",
-      "Performance Optimization",
-      "UI/UX Development",
-      "Web Development",
     ],
   };
 
@@ -158,11 +105,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#0ea5e9" />
       </head>
       <body
@@ -173,7 +115,7 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          enableSystem={false}
           disableTransitionOnChange
         >
           <LoadingProvider>

@@ -2,14 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Menu, X, Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { Menu, X } from "lucide-react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export function Navigation() {
     const [isOpen, setIsOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
-    const { theme, setTheme } = useTheme();
     const { scrollY, scrollYProgress } = useScroll();
 
     const backgroundColor = useTransform(
@@ -72,7 +70,7 @@ export function Navigation() {
                             e.preventDefault();
                             window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
-                        className="text-2xl font-bold font-display cursor-pointer"
+                        className="relative z-50 text-2xl font-bold font-display cursor-pointer"
                         whileHover={{ scale: 1.05 }}
                     >
                         <span className="gradient-text">DO</span>
@@ -105,19 +103,6 @@ export function Navigation() {
                             );
                         })}
 
-                        {/* Theme toggle */}
-                        <button
-                            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                            className="p-2 rounded-full glass hover:scale-110 transition-all"
-                            aria-label="Toggle theme"
-                        >
-                            {theme === "dark" ? (
-                                <Sun className="w-5 h-5" />
-                            ) : (
-                                <Moon className="w-5 h-5" />
-                            )}
-                        </button>
-
                         <MagneticButton
                             onClick={() => scrollToSection("#contact")}
                             className="px-6 py-2 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:shadow-glow"
@@ -127,19 +112,7 @@ export function Navigation() {
                     </div>
 
                     {/* Mobile menu button */}
-                    <div className="md:hidden flex items-center gap-4">
-                        <button
-                            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                            className="p-2 rounded-full glass"
-                            aria-label="Toggle theme"
-                        >
-                            {theme === "dark" ? (
-                                <Sun className="w-5 h-5" />
-                            ) : (
-                                <Moon className="w-5 h-5" />
-                            )}
-                        </button>
-
+                    <div className="md:hidden flex items-center gap-4 relative z-50">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             className="p-2 rounded-full glass"
