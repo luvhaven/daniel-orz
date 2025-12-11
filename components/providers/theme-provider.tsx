@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { type ThemeProviderProps } from "next-themes/dist/types";
+import type { ThemeProviderProps } from "next-themes";
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-    return <NextThemesProvider {...props} attribute="class" defaultTheme="dark" forceTheme="dark">{children}</NextThemesProvider>;
+    return <NextThemesProvider {...props} attribute="class" defaultTheme="dark" forcedTheme="dark">{children}</NextThemesProvider>;
 }
