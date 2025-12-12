@@ -129,7 +129,7 @@ export function HeroSection() {
                         className="absolute top-10 right-10 z-20 glass p-4 rounded-2xl hidden md:block backdrop-blur-md bg-black/40 border border-white/20"
                     >
                         <div className="flex items-baseline gap-1">
-                            <CountUp end={15} duration={2.5} className="text-4xl font-bold font-display text-white drop-shadow-lg" />
+                            <CountUp end={15} duration={2.5} delay={1.5} className="text-4xl font-bold font-display text-white drop-shadow-lg" />
                             <span className="text-2xl font-bold text-white">+</span>
                         </div>
                         <span className="block text-xs uppercase tracking-wider text-white font-bold mt-1 drop-shadow-md">Years Exp.</span>
