@@ -49,7 +49,7 @@ const projects: Project[] = [
     }
 ];
 
-function ProjectItem({ project, index, targetScale }: { project: Project; index: number; targetScale: number }) {
+function ProjectItem({ project, index, _targetScale }: { project: Project; index: number; _targetScale: number }) {
     const container = useRef(null);
     const { scrollYProgress } = useScroll({
         target: container,
@@ -106,7 +106,7 @@ function ProjectItem({ project, index, targetScale }: { project: Project; index:
 
 export function ProjectsSection() {
     const container = useRef(null);
-    const { scrollYProgress } = useScroll({
+    const { scrollYProgress: _scrollYProgress } = useScroll({
         target: container,
         offset: ["start start", "end end"]
     });
@@ -122,7 +122,7 @@ export function ProjectsSection() {
             <div className="pb-[20vh]">
                 {projects.map((project, index) => {
                     const targetScale = 1 - ((projects.length - index) * 0.05);
-                    return <ProjectItem key={index} index={index} project={project} targetScale={targetScale} />;
+                    return <ProjectItem key={index} index={index} project={project} _targetScale={targetScale} />;
                 })}
             </div>
         </section>

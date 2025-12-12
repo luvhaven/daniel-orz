@@ -15,7 +15,7 @@ export function RevealText({ children, className = "", delay = 0 }: RevealTextPr
 
     const container = {
         hidden: { opacity: 0 },
-        visible: (i = 1) => ({
+        visible: (_i = 1) => ({
             opacity: 1,
             transition: { staggerChildren: 0.08, delayChildren: delay },
         }),
@@ -26,7 +26,7 @@ export function RevealText({ children, className = "", delay = 0 }: RevealTextPr
             opacity: 1,
             y: 0,
             transition: {
-                type: "spring",
+                type: "spring" as const,
                 damping: 12,
                 stiffness: 100,
             },
@@ -35,7 +35,7 @@ export function RevealText({ children, className = "", delay = 0 }: RevealTextPr
             opacity: 0,
             y: 20,
             transition: {
-                type: "spring",
+                type: "spring" as const,
                 damping: 12,
                 stiffness: 100,
             },

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Copy, Check, Github, Linkedin, Mail, Phone, Download, Send, Power } from "lucide-react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -104,7 +104,7 @@ export function ContactSection() {
                         </GlassCard>
 
                         <div className="grid gap-6">
-                            {contactMethods.map((method, index) => (
+                            {contactMethods.map((method, _index) => (
                                 <GlassCard
                                     key={method.label}
                                     className="p-6 flex items-center gap-6 group hover:border-primary/50 transition-colors cursor-pointer"

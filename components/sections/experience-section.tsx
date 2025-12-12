@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { BentoCard } from "@/components/ui/bento-card";
-import { Calendar, MapPin, Building2, ChevronRight, Briefcase } from "lucide-react";
+import { Calendar, Building2, ChevronRight } from "lucide-react";
 
 export function ExperienceSection() {
     const experiences = [
