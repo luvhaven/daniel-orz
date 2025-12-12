@@ -131,9 +131,19 @@ function ScrollHUD({ titles, ids }: { titles: string[], ids: string[] }) {
 function SectionMarker({ index, title, isActive, id }: { index: number; title: string; isActive: boolean; id: string }) {
     return (
         <div className="relative group flex items-center pointer-events-auto cursor-pointer"
+            role="button"
+            aria-label={`Scroll to ${title} section`}
+            tabIndex={0}
             onClick={() => {
                 const el = document.getElementById(id);
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    const el = document.getElementById(id);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }
             }}
         >
             {/* Dot Wrapper centered on Rail 
