@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-black selection:bg-primary/30">
       <Navigation />
-      <StackedLayout>
+      <StackedLayout sectionTitles={["Initialize", "Identity", "Works", "Path", "Echoes", "Contact"]}>
         <HeroSection />
         <AboutSection />
         <ProjectsSection />
