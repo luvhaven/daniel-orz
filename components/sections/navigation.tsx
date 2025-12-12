@@ -4,11 +4,13 @@ import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
+import { useHaptic } from "@/hooks/use-haptic";
 
 export function Navigation() {
     const [isOpen, setIsOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
     const { scrollY, scrollYProgress } = useScroll();
+    const { trigger } = useHaptic();
 
     const backgroundColor = useTransform(
         scrollY,
@@ -114,7 +116,10 @@ export function Navigation() {
                     {/* Mobile menu button */}
                     <div className="md:hidden flex items-center gap-4 relative z-50">
                         <button
-                            onClick={() => setIsOpen(!isOpen)}
+                            onClick={() => {
+                                setIsOpen(!isOpen);
+                                trigger();
+                            }}
                             className="p-2 rounded-full glass"
                             aria-label="Toggle menu"
                         >
