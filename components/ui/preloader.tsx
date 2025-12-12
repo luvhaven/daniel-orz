@@ -1,6 +1,8 @@
 "use client";
 
+
 import { useEffect, useState, useRef } from "react";
+import { Power } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLoading } from "@/components/providers/loading-provider";
 import { useOrchestralSound } from "@/hooks/use-orchestral-sound";
@@ -8,7 +10,7 @@ import { useWhooshSound } from "@/hooks/use-whoosh-sound";
 import { useWarmGoodbye } from "@/hooks/use-warm-goodbye";
 
 export function Preloader() {
-    const { isLoading, setIsLoading, isGoodbye } = useLoading();
+    const { isLoading, setIsLoading, isGoodbye, setGoodbye } = useLoading();
     const [count, setCount] = useState(0);
     const [waitingForInput, setWaitingForInput] = useState(false);
     const hasInteractedRef = useRef(false);
@@ -165,7 +167,7 @@ export function Preloader() {
                                             animate={{ opacity: [0.3, 1, 0.3] }}
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                                            className="absolute -bottom-16 text-white/30 uppercase tracking-[0.5em] text-[10px] font-mono whitespace-nowrap"
+                                            className="absolute -bottom-24 text-primary uppercase tracking-[0.2em] text-xs font-mono font-bold whitespace-nowrap animate-pulse drop-shadow-[0_0_10px_rgba(14,165,233,0.8)]"
                                         >
                                             [ Click to Initialize ]
                                         </motion.div>
@@ -185,7 +187,14 @@ export function Preloader() {
                                 <h2 className="text-4xl md:text-6xl font-light font-display text-white/90 tracking-[0.2em] mb-4 drop-shadow-2xl">
                                     TERMINATED
                                 </h2>
-                                <p className="text-white/40 font-mono text-sm tracking-widest uppercase">System shutdown complete</p>
+                                <p className="text-white/40 font-mono text-sm tracking-widest uppercase mb-8">System shutdown complete</p>
+
+                                <button
+                                    onClick={() => setGoodbye(false)}
+                                    className="group relative inline-flex items-center justify-center p-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-primary/50 transition-all duration-300"
+                                >
+                                    <Power className="w-6 h-6 text-white/50 group-hover:text-primary group-hover:drop-shadow-[0_0_8px_rgba(14,165,233,0.8)] transition-all" />
+                                </button>
                             </motion.div>
                         )}
                     </motion.div>

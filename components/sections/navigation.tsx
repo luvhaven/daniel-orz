@@ -2,15 +2,17 @@
 
 import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Power } from "lucide-react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { useHaptic } from "@/hooks/use-haptic";
+import { useLoading } from "@/components/providers/loading-provider";
 
 export function Navigation() {
     const [isOpen, setIsOpen] = useState(false);
     const [mounted, setMounted] = useState(false);
     const { scrollY, scrollYProgress } = useScroll();
     const { trigger } = useHaptic();
+    const { setGoodbye } = useLoading();
 
     const backgroundColor = useTransform(
         scrollY,
@@ -111,6 +113,16 @@ export function Navigation() {
                         >
                             Hire Me
                         </MagneticButton>
+
+                        <button
+                            onClick={() => {
+                                setGoodbye(true);
+                                trigger();
+                            }}
+                            className="p-3 rounded-full hover:bg-white/10 transition-colors group"
+                        >
+                            <Power className="w-5 h-5 text-muted-foreground group-hover:text-red-500 group-hover:drop-shadow-[0_0_8px_rgba(239,68,68,0.8)] transition-all" />
+                        </button>
                     </div>
 
                     {/* Mobile menu button */}
@@ -149,7 +161,7 @@ export function Navigation() {
                                             e.preventDefault();
                                             scrollToSection(item.href);
                                         }}
-                                        className="text-5xl font-bold font-display text-white/50 hover:text-white transition-colors"
+                                        className="text-5xl font-bold font-display text-white/50 transition-all duration-300 hover:text-white hover:scale-110 hover:text-glow active:scale-95"
                                     >
                                         {item.name}
                                     </motion.a>
@@ -162,11 +174,26 @@ export function Navigation() {
                                     onClick={(e) => {
                                         e.preventDefault();
                                         scrollToSection("#contact");
+                                        trigger();
                                     }}
-                                    className="mt-8 px-8 py-4 bg-white text-black rounded-full font-bold text-xl"
+                                    className="mt-8 px-8 py-4 bg-white text-black rounded-full font-bold text-xl active:scale-95 transition-transform"
                                 >
                                     Hire Me
                                 </motion.a>
+
+                                <motion.button
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.6 }}
+                                    onClick={() => {
+                                        setIsOpen(false);
+                                        setGoodbye(true);
+                                        trigger();
+                                    }}
+                                    className="mt-4 p-4 rounded-full bg-white/5 border border-white/10 hover:bg-red-500/20 hover:border-red-500/50 transition-all group"
+                                >
+                                    <Power className="w-8 h-8 text-white/50 group-hover:text-red-500 transition-colors" />
+                                </motion.button>
                             </div>
                         </motion.div>
                     )}

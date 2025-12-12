@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
@@ -59,11 +59,20 @@ function ProjectItem({ project, index, _targetScale }: { project: Project; index
     const scale = useTransform(scrollYProgress, [0, 1], [2, 1]);
     const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
 
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener("resize", checkMobile);
+        return () => window.removeEventListener("resize", checkMobile);
+    }, []);
+
     return (
-        <div ref={container} className="h-screen flex items-center justify-center sticky top-0">
+        <div ref={container} className="h-auto md:h-screen flex items-center justify-center sticky-item snap-center flex-shrink-0 w-[85vw] md:w-full md:sticky md:top-0">
             <motion.div
-                style={{ scale: index === projects.length - 1 ? 1 : scale, opacity }}
-                className="relative w-full max-w-5xl h-[60vh] md:h-[70vh] rounded-3xl overflow-hidden glass border border-white/10 group bg-[#0a0a0a]"
+                style={isMobile ? {} : { scale: index === projects.length - 1 ? 1 : scale, opacity }}
+                className="relative w-full md:max-w-5xl h-[50vh] md:h-[70vh] rounded-3xl overflow-hidden glass border border-white/10 group bg-[#0a0a0a]"
             >
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-20 group-hover:opacity-30 transition-opacity duration-500`} />
 
@@ -119,7 +128,7 @@ export function ProjectsSection() {
                 </h2>
             </div>
 
-            <div className="pb-[20vh]">
+            <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 pb-12 md:pb-[20vh] md:block md:overflow-visible md:px-0 scrollbar-hide">
                 {projects.map((project, index) => {
                     const targetScale = 1 - ((projects.length - index) * 0.05);
                     return <ProjectItem key={index} index={index} project={project} _targetScale={targetScale} />;
