@@ -6,22 +6,20 @@ import { ProjectsSection } from "@/components/sections/projects-section";
 import { TestimonialsSection } from "@/components/sections/testimonials-section";
 import { ContactSection } from "@/components/sections/contact-section";
 
-import { WarpTransition, WarpBackground } from "@/components/ui/warp-transition";
+import { StackedLayout } from "@/components/ui/stacked-layout";
 
 export default function Home() {
   return (
-    <main className="min-h-screen relative perspective-[2000px]"> {/* Deep Perspective */}
-      <WarpBackground />
+    <main className="min-h-screen bg-black selection:bg-primary/30">
       <Navigation />
-
-      <div className="flex flex-col gap-32 pb-32"> {/* Spacing for "Slide" feel */}
-        <WarpTransition><HeroSection /></WarpTransition>
-        <WarpTransition><AboutSection /></WarpTransition>
-        <WarpTransition><ProjectsSection /></WarpTransition>
-        <WarpTransition><ExperienceSection /></WarpTransition>
-        <WarpTransition><TestimonialsSection /></WarpTransition>
-        <WarpTransition><ContactSection /></WarpTransition>
-      </div>
+      <StackedLayout>
+        <HeroSection />
+        <AboutSection />
+        <ProjectsSection />
+        <ExperienceSection />
+        <TestimonialsSection />
+        <ContactSection />
+      </StackedLayout>
     </main>
   );
 }
