@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLoading } from "@/components/providers/loading-provider";
 import { useOrchestralSound } from "@/hooks/use-orchestral-sound";
@@ -10,27 +10,40 @@ import { useWarmGoodbye } from "@/hooks/use-warm-goodbye";
 export function Preloader() {
     const { isLoading, setIsLoading, isGoodbye } = useLoading();
     const [count, setCount] = useState(0);
+    const [waitingForInput, setWaitingForInput] = useState(false);
+    const hasInteractedRef = useRef(false);
+
     const playOrchestra = useOrchestralSound();
     const playWhoosh = useWhooshSound(); // Physical curtain sound
     const playGoodbye = useWarmGoodbye();
 
-    // Pre-warm audio capability on ANY interaction during loading
+    // Track ANY interaction to unlock 'Auto' mode
     useEffect(() => {
-        const unlockAudio = () => {
-            const Ctx = window.AudioContext || (window as any).webkitAudioContext;
-            const ctx = new Ctx(); // Just accessing constructor often hints intent, but true unlock needs resume() on the actual context used
-            // Since useOrchestralSound creates its own context on call, we can't easily pre-warm THAT specific one without calling it.
-            // Strategy: We rely on the hook's internal logic which I will update next. 
-            // Ideally, we want to capture a gesture to pass to the synth.
+        const markInteraction = () => {
+            hasInteractedRef.current = true;
         };
 
-        window.addEventListener("mousedown", unlockAudio, { once: true });
-        window.addEventListener("keydown", unlockAudio, { once: true });
+        const events = ["mousedown", "keydown", "touchstart", "scroll", "wheel", "mousemove"];
+        events.forEach(e => window.addEventListener(e, markInteraction, { once: true }));
+
         return () => {
-            window.removeEventListener("mousedown", unlockAudio);
-            window.removeEventListener("keydown", unlockAudio);
+            events.forEach(e => window.removeEventListener(e, markInteraction));
         };
     }, []);
+
+    const triggerEntrance = () => {
+        playWhoosh();    // Immediate physical cue
+        playOrchestra(); // Atmospheric swell
+        setIsLoading(false);
+    };
+
+    // User prompt handler (only used if auto-play fails)
+    const handleManualStart = () => {
+        if (waitingForInput) {
+            setWaitingForInput(false); // Hide the prompt
+            triggerEntrance();
+        }
+    };
 
     // Trigger goodbye sound when state changes
     useEffect(() => {
@@ -49,20 +62,18 @@ export function Preloader() {
 
         if (!isLoading) return;
 
-        // Creating an AudioContext here just to resume it on interaction? 
-        // Best approach for "Auto" sound:
-        // We can't cheat the browser. If they don't interact, no sound.
-        // BUT, we can make the "Light Leak" animation so captivating it serves as the "Sound" visually if audio fails.
-
         const interval = setInterval(() => {
             setCount((prev) => {
                 if (prev >= 100) {
                     clearInterval(interval);
 
-                    // Slower, dramatic reveal
-                    playWhoosh();    // Immediate physical cue
-                    playOrchestra(); // Atmospheric swell
-                    setIsLoading(false);
+                    if (hasInteractedRef.current) {
+                        // User already moved/clicked: Auto-Enter
+                        triggerEntrance();
+                    } else {
+                        // No interaction yet: Wait for input to ensure sound works
+                        setWaitingForInput(true);
+                    }
 
                     return 100;
                 }
@@ -82,7 +93,8 @@ export function Preloader() {
             {(isLoading || isGoodbye) && (
                 <motion.div
                     key="preloader"
-                    className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto bg-transparent"
+                    className={`fixed inset - 0 z - [9999] flex items - center justify - center pointer - events - auto bg - transparent ${waitingForInput ? 'cursor-pointer' : ''} `}
+                    onClick={waitingForInput ? handleManualStart : undefined}
                     initial={isGoodbye ? { opacity: 0 } : { opacity: 1 }}
                     animate={{ opacity: 1 }}
                     exit={{ transition: { duration: 1.0 } }} // Kept container alive longer
@@ -144,6 +156,19 @@ export function Preloader() {
                                         {count}
                                     </motion.h1>
                                 </motion.div>
+
+                                <AnimatePresence>
+                                    {waitingForInput && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            exit={{ opacity: 0 }}
+                                            className="absolute -bottom-12 text-white/40 uppercase tracking-[0.3em] text-sm animate-pulse"
+                                        >
+                                            Click to Init
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
                         )}
 
