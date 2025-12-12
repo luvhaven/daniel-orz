@@ -63,7 +63,7 @@ export function CustomCursor() {
                     type: "spring",
                     stiffness: 100,
                     damping: 20,
-                    mass: 0.2, // Slightly heavier feel for the ring
+                    mass: 0.8, // Heavy premium feel
                 }}
             />
         </>

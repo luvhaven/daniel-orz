@@ -93,7 +93,7 @@ export function Preloader() {
             {(isLoading || isGoodbye) && (
                 <motion.div
                     key="preloader"
-                    className={`fixed inset - 0 z - [9999] flex items - center justify - center pointer - events - auto bg - transparent ${waitingForInput ? 'cursor-pointer' : ''} `}
+                    className={`fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto bg-transparent ${waitingForInput ? 'cursor-pointer' : ''}`}
                     onClick={waitingForInput ? handleManualStart : undefined}
                     initial={isGoodbye ? { opacity: 0 } : { opacity: 1 }}
                     animate={{ opacity: 1 }}
@@ -160,12 +160,13 @@ export function Preloader() {
                                 <AnimatePresence>
                                     {waitingForInput && (
                                         <motion.div
-                                            initial={{ opacity: 0, y: 20 }}
-                                            animate={{ opacity: 1, y: 0 }}
+                                            initial={{ opacity: 0, y: 10 }}
+                                            animate={{ opacity: [0.3, 1, 0.3] }}
                                             exit={{ opacity: 0 }}
-                                            className="absolute -bottom-12 text-white/40 uppercase tracking-[0.3em] text-sm animate-pulse"
+                                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                                            className="absolute -bottom-16 text-white/30 uppercase tracking-[0.5em] text-[10px] font-mono whitespace-nowrap"
                                         >
-                                            Click to Init
+                                            [ Click to Initialize ]
                                         </motion.div>
                                     )}
                                 </AnimatePresence>
