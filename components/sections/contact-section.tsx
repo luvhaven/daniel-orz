@@ -171,7 +171,7 @@ export function ContactSection() {
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <MagneticButton
                                     onClick={() => window.location.href = "mailto:doriazowan@gmail.com"}
-                                    className="px-8 py-4 bg-gradient-to-r from-primary via-secondary to-accent text-white rounded-full font-semibold text-lg shadow-glow hover:shadow-glow-lg"
+                                    className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold text-lg hover:shadow-glow transition-all duration-300"
                                 >
                                     <Send className="w-5 h-5 inline-block mr-2" />
                                     Send Message
