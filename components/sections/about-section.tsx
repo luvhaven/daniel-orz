@@ -8,20 +8,20 @@ import { CountUp } from "@/components/ui/count-up";
 
 export function AboutSection() {
     const frontendSkills = [
-        { name: "JavaScript (ES6+)", level: 98, icon: <Terminal className="w-4 h-4" /> },
-        { name: "TypeScript", level: 95, icon: <Code2 className="w-4 h-4" /> },
-        { name: "React", level: 98, icon: <Zap className="w-4 h-4" /> },
-        { name: "Next.js", level: 95, icon: <Layers className="w-4 h-4" /> },
-        { name: "Tailwind CSS", level: 95, icon: <Palette className="w-4 h-4" /> },
-        { name: "Framer Motion", level: 90, icon: <Zap className="w-4 h-4" /> },
+        { name: "JavaScript (ES6+)", level: "expert" as const, icon: <Terminal className="w-4 h-4" /> },
+        { name: "TypeScript", level: "expert" as const, icon: <Code2 className="w-4 h-4" /> },
+        { name: "React", level: "expert" as const, icon: <Zap className="w-4 h-4" /> },
+        { name: "Next.js", level: "expert" as const, icon: <Layers className="w-4 h-4" /> },
+        { name: "Tailwind CSS", level: "expert" as const, icon: <Palette className="w-4 h-4" /> },
+        { name: "Framer Motion", level: "expert" as const, icon: <Zap className="w-4 h-4" /> },
     ];
 
     const backendSkills = [
-        { name: "Node.js", level: 85, icon: <Terminal className="w-4 h-4" /> },
-        { name: "GraphQL", level: 80, icon: <GitBranch className="w-4 h-4" /> },
-        { name: "PostgreSQL", level: 75, icon: <Search className="w-4 h-4" /> },
-        { name: "Docker", level: 70, icon: <Cpu className="w-4 h-4" /> },
-        { name: "AWS", level: 75, icon: <Code2 className="w-4 h-4" /> },
+        { name: "Node.js", level: "intermediate" as const, icon: <Terminal className="w-4 h-4" /> },
+        { name: "GraphQL", level: "intermediate" as const, icon: <GitBranch className="w-4 h-4" /> },
+        { name: "PostgreSQL", level: "intermediate" as const, icon: <Search className="w-4 h-4" /> },
+        { name: "Docker", level: "intermediate" as const, icon: <Cpu className="w-4 h-4" /> },
+        { name: "AWS", level: "intermediate" as const, icon: <Code2 className="w-4 h-4" /> },
     ];
 
     return (
