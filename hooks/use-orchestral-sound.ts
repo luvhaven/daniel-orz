@@ -15,6 +15,21 @@ export function useOrchestralSound() {
             // Frequencies: C3(130.8), G3(196), C4(261.6), E4(329.6), G4(392), D5(587.3)
             const frequencies = [130.81, 196.00, 261.63, 329.63, 392.00, 587.33];
 
+            if (ctx.state === "suspended") {
+                const resume = () => {
+                    ctx.resume();
+                    // Clean up listeners
+                    ["click", "touchstart", "keydown", "scroll", "wheel"].forEach(event =>
+                        document.removeEventListener(event, resume)
+                    );
+                };
+
+                // Attach listeners to any user interaction
+                ["click", "touchstart", "keydown", "scroll", "wheel"].forEach(event =>
+                    document.addEventListener(event, resume, { once: true })
+                );
+            }
+
             const now = ctx.currentTime;
             const masterGain = ctx.createGain();
             masterGain.gain.setValueAtTime(0, now);

@@ -81,6 +81,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { GrainOverlay } from "@/components/ui/grain-overlay";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -108,10 +110,10 @@ export default function RootLayout({
         <meta name="theme-color" content="#0ea5e9" />
       </head>
       <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased selection:bg-primary/30 selection:text-white`}
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased selection:bg-primary/50 selection:text-white`}
       >
         <div className="fixed-bg" />
-        <div className="noise-overlay" />
+        <GrainOverlay />
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
