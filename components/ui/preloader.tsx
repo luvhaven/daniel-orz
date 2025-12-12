@@ -151,6 +151,7 @@ export function Preloader() {
                                         className="text-9xl md:text-[12rem] font-bold font-display text-white/90 tabular-nums tracking-tighter mix-blend-overlay z-10"
                                         initial={{ y: 100, filter: "blur(10px)" }}
                                         animate={{ y: 0, filter: "blur(0px)" }}
+                                        exit={{ scale: 0.8, opacity: 0, filter: "blur(20px)", transition: { duration: 0.8, ease: "anticipate" } }} // Cinematic exit
                                         transition={{ duration: 0.8, ease: "easeOut" }}
                                     >
                                         {count}

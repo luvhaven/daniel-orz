@@ -168,11 +168,7 @@ export function Navigation() {
                 </AnimatePresence>
             </div>
 
-            {/* Scroll Progress Bar */}
-            <motion.div
-                className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-primary via-secondary to-accent origin-left"
-                style={{ scaleX: scrollYProgress }}
-            />
+
         </motion.nav>
     );
 }
