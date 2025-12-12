@@ -19,13 +19,13 @@ export function useOrchestralSound() {
                 const resume = () => {
                     ctx.resume();
                     // Clean up listeners
-                    ["click", "touchstart", "keydown", "scroll", "wheel"].forEach(event =>
+                    ["click", "touchstart", "keydown", "scroll", "wheel", "mousemove"].forEach(event =>
                         document.removeEventListener(event, resume)
                     );
                 };
 
                 // Attach listeners to any user interaction
-                ["click", "touchstart", "keydown", "scroll", "wheel"].forEach(event =>
+                ["click", "touchstart", "keydown", "scroll", "wheel", "mousemove"].forEach(event =>
                     document.addEventListener(event, resume, { once: true })
                 );
             }
