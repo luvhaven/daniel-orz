@@ -6,6 +6,7 @@ import { Copy, Check, Github, Linkedin, Mail, Phone, Download, Send, Power } fro
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { GlassCard } from "@/components/ui/glass-card";
 import { useLoading } from "@/components/providers/loading-provider";
+import { DownloadCVButton } from "@/components/cv/download-button";
 
 export function ContactSection() {
     const [copied, setCopied] = useState(false);
@@ -177,15 +178,7 @@ export function ContactSection() {
                                     Send Message
                                 </MagneticButton>
 
-                                <MagneticButton
-                                    onClick={() => {
-                                        window.open("/daniel-oriazowan-cv.pdf", "_blank");
-                                    }}
-                                    className="px-8 py-4 glass border-2 border-primary/30 rounded-full font-semibold text-lg hover:border-primary/50 text-white"
-                                >
-                                    <Download className="w-5 h-5 inline-block mr-2" />
-                                    Download CV
-                                </MagneticButton>
+                                <DownloadCVButton />
                             </div>
                         </div>
                     </div>
