@@ -1,17 +1,17 @@
 "use client";
 
-"use client";
-
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLoading } from "@/components/providers/loading-provider";
 import { useOrchestralSound } from "@/hooks/use-orchestral-sound";
+import { useWhooshSound } from "@/hooks/use-whoosh-sound";
 import { useWarmGoodbye } from "@/hooks/use-warm-goodbye";
 
 export function Preloader() {
     const { isLoading, setIsLoading, isGoodbye } = useLoading();
     const [count, setCount] = useState(0);
     const playOrchestra = useOrchestralSound();
+    const playWhoosh = useWhooshSound(); // Physical curtain sound
     const playGoodbye = useWarmGoodbye();
 
     // Pre-warm audio capability on ANY interaction during loading
@@ -59,8 +59,9 @@ export function Preloader() {
                 if (prev >= 100) {
                     clearInterval(interval);
 
-                    // Instant Trigger
-                    playOrchestra();
+                    // Slower, dramatic reveal
+                    playWhoosh();    // Immediate physical cue
+                    playOrchestra(); // Atmospheric swell
                     setIsLoading(false);
 
                     return 100;
@@ -72,7 +73,7 @@ export function Preloader() {
         }, 80);
 
         return () => clearInterval(interval);
-    }, [isLoading, setIsLoading, playOrchestra]);
+    }, [isLoading, setIsLoading, playOrchestra, playWhoosh]);
 
     const ease = [0.76, 0, 0.24, 1] as const;
 
@@ -84,7 +85,7 @@ export function Preloader() {
                     className="fixed inset-0 z-[9999] flex items-center justify-center pointer-events-auto bg-transparent"
                     initial={isGoodbye ? { opacity: 0 } : { opacity: 1 }}
                     animate={{ opacity: 1 }}
-                    exit={{ transition: { duration: 0.8 } }}
+                    exit={{ transition: { duration: 1.0 } }} // Kept container alive longer
                 >
                     {/* Left Curtain Panel - Classic Clean Look */}
                     <motion.div
@@ -92,7 +93,7 @@ export function Preloader() {
                         initial={{ x: isGoodbye ? "-100%" : 0 }}
                         animate={{ x: 0 }}
                         exit={{ x: "-100%" }}
-                        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }} // Slower (2.4s)
                     >
                         <div className="absolute right-0 top-0 w-[100px] h-full bg-gradient-to-l from-[#111] to-transparent opacity-50" />
                     </motion.div>
@@ -103,7 +104,7 @@ export function Preloader() {
                         initial={{ x: isGoodbye ? "100%" : 0 }}
                         animate={{ x: 0 }}
                         exit={{ x: "100%" }}
-                        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 2.4, ease: [0.22, 1, 0.36, 1] }} // Slower (2.4s)
                     >
                         <div className="absolute left-0 top-0 w-[100px] h-full bg-gradient-to-r from-[#111] to-transparent opacity-50" />
                     </motion.div>
