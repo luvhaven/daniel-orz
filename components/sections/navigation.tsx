@@ -135,7 +135,7 @@ export function Navigation() {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            className="fixed inset-0 top-0 left-0 w-full h-screen bg-black/95 backdrop-blur-2xl z-40 flex flex-col justify-center items-center md:hidden"
+                            className="fixed inset-0 top-0 left-0 w-full h-[100dvh] bg-black/95 backdrop-blur-2xl z-40 flex flex-col justify-center items-center md:hidden"
                         >
                             <div className="flex flex-col gap-8 text-center">
                                 {navItems.map((item, i) => (
