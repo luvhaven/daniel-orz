@@ -33,7 +33,7 @@ export function useOrchestralSound() {
             const now = ctx.currentTime;
             const masterGain = ctx.createGain();
             masterGain.gain.setValueAtTime(0, now);
-            masterGain.gain.linearRampToValueAtTime(0.4, now + 1.5); // Swell In
+            masterGain.gain.linearRampToValueAtTime(0.4, now + 0.5); // Faster Swell In for immediate sync
             masterGain.gain.exponentialRampToValueAtTime(0.001, now + 4); // Fade Out
 
             // Compressor for "glue"
