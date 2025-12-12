@@ -46,7 +46,7 @@ export function HeroSection() {
                 {/* Left Column: Typography */}
                 <motion.div
                     style={{ y: y1 }}
-                    className="order-2 lg:order-1 space-y-8"
+                    className="order-1 lg:order-1 space-y-8"
                 >
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
@@ -95,7 +95,7 @@ export function HeroSection() {
                 {/* Right Column: Visual */}
                 <motion.div
                     style={{ y: y2 }}
-                    className="order-1 lg:order-2 relative flex justify-center lg:justify-end"
+                    className="order-2 lg:order-2 relative flex justify-center lg:justify-end"
                 >
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
