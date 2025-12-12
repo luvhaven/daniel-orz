@@ -21,7 +21,7 @@ export function ExperienceSection() {
                 "Mentored a team of 6 engineers, introducing strict code review protocols and CI/CD automation that reduced bug production by 35%.",
                 "Led the migration of legacy monolithic codebases to micro-frontends (Module Federation), decoupling deployments and improving scalability.",
             ],
-            color: "from-blue-500/20 to-purple-500/20",
+            color: "from-cyan-500/20 to-blue-500/20",
         },
         {
             id: 2,
@@ -37,7 +37,7 @@ export function ExperienceSection() {
                 "Optimized operational workflows by deploying custom automation scripts, reducing manual data entry work by 15 hours/week per employee.",
                 "Managed vendor relationships and IT budgets of $50k+, successfully negotiating contracts to reduce software licensing costs by 15%.",
             ],
-            color: "from-purple-500/20 to-pink-500/20",
+            color: "from-blue-500/20 to-violet-500/20",
         },
         {
             id: 3,

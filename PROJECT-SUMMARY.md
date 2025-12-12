@@ -118,7 +118,7 @@ daniel-orz/
 
 ### Color System
 - **Primary**: Vibrant blue (#0ea5e9)
-- **Secondary**: Rich purple (#a855f7)
+- **Secondary**: Electric Blue (#3b82f6) / Cyan
 - **Accent**: Energetic orange (#f97316)
 - **Dark Mode**: Fully supported
 

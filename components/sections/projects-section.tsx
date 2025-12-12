@@ -28,7 +28,7 @@ const projects: Project[] = [
         category: "Data Visualization",
         description: "Real-time financial analytics platform processing millions of data points via WebSockets.",
         tags: ["React", "D3.js", "Socket.io"],
-        color: "from-purple-500/20 to-pink-500/20",
+        color: "from-indigo-500/20 to-blue-500/20",
         image: "/project-fintech.png"
     },
     {

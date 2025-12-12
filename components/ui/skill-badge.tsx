@@ -10,8 +10,8 @@ interface SkillBadgeProps {
 
 export function SkillBadge({ name, level = "expert", icon }: SkillBadgeProps) {
     const levelColors = {
-        beginner: "from-blue-500/20 to-blue-600/20 border-blue-500/30",
-        intermediate: "from-purple-500/20 to-purple-600/20 border-purple-500/30",
+        beginner: "from-teal-500/20 to-emerald-600/20 border-teal-500/30",
+        intermediate: "from-indigo-500/20 to-blue-600/20 border-indigo-500/30",
         expert: "from-primary/20 to-secondary/20 border-primary/30",
     };
 
