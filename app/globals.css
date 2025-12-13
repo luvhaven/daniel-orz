@@ -111,6 +111,7 @@ body {
   color: white;
   font-family: var(--font-sans);
   overflow-x: hidden;
+  scroll-behavior: smooth;
 
   /* Hide cursor on devices that have a mouse */
   @media (pointer: fine) {
@@ -196,4 +197,17 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #666;
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
 }

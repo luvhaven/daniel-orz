@@ -58,25 +58,25 @@ export function AboutSection() {
                             </p>
                         </div>
 
-                        <div className="pt-8 grid grid-cols-3 gap-8 border-t border-white/10">
+                        <div className="pt-8 grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 border-t border-white/10">
                             <div>
                                 <div className="flex items-baseline mb-2">
-                                    <CountUp end={15} duration={2} className="text-4xl font-bold text-white" />
-                                    <span className="text-4xl font-bold text-white">+</span>
+                                    <CountUp end={15} duration={2} className="text-3xl md:text-4xl font-bold text-white" />
+                                    <span className="text-3xl md:text-4xl font-bold text-white">+</span>
                                 </div>
                                 <span className="text-xs uppercase tracking-widest text-muted-foreground">Years Experience</span>
                             </div>
                             <div>
                                 <div className="flex items-baseline mb-2">
-                                    <CountUp end={50} duration={2.5} className="text-4xl font-bold text-white" />
-                                    <span className="text-4xl font-bold text-white">+</span>
+                                    <CountUp end={50} duration={2.5} className="text-3xl md:text-4xl font-bold text-white" />
+                                    <span className="text-3xl md:text-4xl font-bold text-white">+</span>
                                 </div>
                                 <span className="text-xs uppercase tracking-widest text-muted-foreground">Projects Shipped</span>
                             </div>
-                            <div>
+                            <div className="col-span-2 md:col-span-1">
                                 <div className="flex items-baseline mb-2">
-                                    <CountUp end={100} duration={3} className="text-4xl font-bold text-white" />
-                                    <span className="text-4xl font-bold text-white">k+</span>
+                                    <CountUp end={100} duration={3} className="text-3xl md:text-4xl font-bold text-white" />
+                                    <span className="text-3xl md:text-4xl font-bold text-white">k+</span>
                                 </div>
                                 <span className="text-xs uppercase tracking-widest text-muted-foreground">Users Served</span>
                             </div>

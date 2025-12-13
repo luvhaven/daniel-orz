@@ -77,7 +77,7 @@ export function ContactSection() {
                     </motion.h2>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 mb-24">
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-24 mb-16 lg:mb-24">
                     {/* Contact Info */}
                     <div className="space-y-8">
                         <GlassCard className="p-8 space-y-6">
@@ -158,7 +158,7 @@ export function ContactSection() {
                     viewport={{ once: true }}
                     className="max-w-4xl mx-auto"
                 >
-                    <div className="frosted-glass text-center p-12 rounded-4xl bg-white/5 border border-white/10">
+                    <div className="frosted-glass text-center p-8 md:p-12 rounded-4xl bg-white/5 border border-white/10">
                         <div className="max-w-2xl mx-auto space-y-8">
                             <div>
                                 <h3 className="text-3xl md:text-4xl font-bold mb-4">
