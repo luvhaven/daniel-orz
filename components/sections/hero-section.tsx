@@ -58,7 +58,7 @@ export function HeroSection() {
                             <span className="text-secondary font-mono tracking-widest text-sm uppercase">Senior Frontend Engineer</span>
                         </div>
 
-                        <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-bold font-display leading-[0.9] tracking-tighter mb-6">
+                        <h1 className="text-5xl md:text-8xl lg:text-[7rem] font-bold font-display leading-[0.9] tracking-tighter mb-6">
                             DANIEL <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-white/20">
                                 ORIAZOWAN

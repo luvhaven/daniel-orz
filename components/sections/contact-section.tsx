@@ -172,9 +172,9 @@ export function ContactSection() {
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <MagneticButton
                                     onClick={() => window.location.href = "mailto:doriazowan@gmail.com"}
-                                    className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold text-lg hover:shadow-glow transition-all duration-300"
+                                    className="px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold text-base md:text-lg hover:shadow-glow transition-all duration-300"
                                 >
-                                    <Send className="w-5 h-5 inline-block mr-2" />
+                                    <Send className="w-4 h-4 md:w-5 md:h-5 inline-block mr-2" />
                                     Send Message
                                 </MagneticButton>
 
