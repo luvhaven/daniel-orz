@@ -6,6 +6,7 @@ import { Menu, X, Power } from "lucide-react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { useHaptic } from "@/hooks/use-haptic";
 import { useLoading } from "@/components/providers/loading-provider";
+import { LiquidLogo } from "@/components/ui/liquid-logo";
 
 export function Navigation() {
     const [isOpen, setIsOpen] = useState(false);
@@ -74,10 +75,10 @@ export function Navigation() {
                             e.preventDefault();
                             window.scrollTo({ top: 0, behavior: "smooth" });
                         }}
-                        className="relative z-50 text-2xl font-bold font-display cursor-pointer"
+                        className="relative z-50 cursor-pointer"
                         whileHover={{ scale: 1.05 }}
                     >
-                        <span className="gradient-text">DO</span>
+                        <LiquidLogo />
                     </motion.a>
 
                     {/* Desktop Navigation */}
