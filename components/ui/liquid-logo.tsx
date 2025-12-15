@@ -14,9 +14,14 @@ export function LiquidLogo() {
 
     // Map scroll 0..1 to Y position 40..-5
     const y = useTransform(smoothProgress, [0, 1], [40, -5]);
+    const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <div className="w-[60px] h-[40px] relative group cursor-pointer">
+        <div
+            className="w-[60px] h-[40px] relative group cursor-pointer"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+        >
             <svg viewBox="0 0 60 40" className="w-full h-full overflow-visible">
                 <defs>
                     {/* Gradient for the Liquid */}
@@ -65,7 +70,7 @@ export function LiquidLogo() {
                         transition={{
                             repeat: Infinity,
                             ease: "linear",
-                            duration: 3
+                            duration: isHovered ? 1.5 : 3
                         }}
                     />
                 </g>

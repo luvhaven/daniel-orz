@@ -48,9 +48,8 @@ export const metadata: Metadata = {
   creator: "Daniel Oriazowan",
   publisher: "Daniel Oriazowan",
   icons: {
-    icon: '/favicon-logo.png',
-    shortcut: '/favicon-logo.png',
-    apple: '/favicon-logo.png',
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
   },
   openGraph: {
     type: "website",

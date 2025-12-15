@@ -18,7 +18,19 @@ export function Navigation() {
     const backgroundColor = useTransform(
         scrollY,
         [0, 100],
-        ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.8)"]
+        ["rgba(0, 0, 0, 0)", "rgba(0, 0, 0, 0.85)"]
+    );
+
+    const borderColor = useTransform(
+        scrollY,
+        [0, 100],
+        ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.1)"]
+    );
+
+    const backdropBlur = useTransform(
+        scrollY,
+        [0, 100],
+        ["blur(0px)", "blur(12px)"]
     );
 
     const [activeSection, setActiveSection] = useState("about");
@@ -63,8 +75,14 @@ export function Navigation() {
 
     return (
         <motion.nav
-            style={{ backgroundColor }}
-            className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b border-white/10"
+            style={{
+                backgroundColor,
+                borderBottomColor: borderColor,
+                borderBottomWidth: 1,
+                borderBottomStyle: "solid",
+                backdropFilter: backdropBlur
+            }}
+            className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
         >
             <div className="container-custom">
                 <div className="flex items-center justify-between h-20">
