@@ -12,8 +12,8 @@ export function LiquidLogo() {
         restDelta: 0.001
     });
 
-    // Map scroll 0..1 to Y position 40..-5
-    const y = useTransform(smoothProgress, [0, 1], [40, -5]);
+    // Map scroll 0..1 to Y position 50..-15 (Broader range to ensure full empty/fill)
+    const y = useTransform(smoothProgress, [0, 1], [50, -15]);
     const [isHovered, setIsHovered] = useState(false);
 
     return (

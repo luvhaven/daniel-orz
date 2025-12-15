@@ -25,7 +25,7 @@ export function AboutSection() {
     ];
 
     return (
-        <section id="about" className="section-padding relative overflow-hidden bg-black">
+        <section className="section-padding relative overflow-hidden bg-black">
             <div className="container-custom relative z-10">
                 <div className="grid lg:grid-cols-2 gap-16 items-start">
 

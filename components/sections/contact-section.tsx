@@ -44,7 +44,7 @@ export function ContactSection() {
     ];
 
     return (
-        <section id="contact" className="section-padding bg-background relative overflow-hidden">
+        <section className="section-padding bg-background relative overflow-hidden">
             {/* Animated background */}
             <div className="absolute inset-0">
                 <div className="absolute inset-0 mesh-gradient opacity-50" />

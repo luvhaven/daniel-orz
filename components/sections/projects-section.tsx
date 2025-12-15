@@ -121,7 +121,7 @@ export function ProjectsSection() {
     });
 
     return (
-        <section id="projects" className="relative bg-black" ref={container}>
+        <section className="relative bg-black" ref={container}>
             <div className="container-custom py-24 mb-12">
                 <h2 className="text-6xl md:text-8xl font-bold font-display mb-8">
                     SELECTED <br /> <span className="text-muted-foreground opacity-30">WORKS</span>

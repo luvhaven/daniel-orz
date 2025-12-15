@@ -135,14 +135,22 @@ function SectionMarker({ index, title, isActive, id }: { index: number; title: s
             aria-label={`Scroll to ${title} section`}
             tabIndex={0}
             onClick={() => {
-                const el = document.getElementById(id);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                if (index === 0) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    const el = document.getElementById(id);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }
             }}
             onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    const el = document.getElementById(id);
-                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    if (index === 0) {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    } else {
+                        const el = document.getElementById(id);
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
             }}
         >

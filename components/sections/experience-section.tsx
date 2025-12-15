@@ -74,7 +74,7 @@ export function ExperienceSection() {
     ];
 
     return (
-        <section id="experience" className="section-padding relative overflow-hidden bg-black">
+        <section className="section-padding relative overflow-hidden bg-black">
             <div className="container-custom relative z-10">
                 {/* Section header */}
                 <motion.div
